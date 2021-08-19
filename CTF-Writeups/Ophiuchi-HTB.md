@@ -53,7 +53,7 @@ Now, we should be able to execute the YAML parser on the victim's machine, after
 
 One I clicked the PARSE button, the payload was executed and I had access to the reverse shell as the tomcat user.
 
-![6ophiuchi](https://i.imgur.com/tJ79z7A.png)
+<img src="https://i.imgur.com/tJ79z7A.png" width="600">
 
 ## 3. Privilege Escalation - User
 
