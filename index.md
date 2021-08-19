@@ -1,6 +1,6 @@
 ## About
 
-![GENGAR](img/cute-gengar.jpg)
+<img src="img/cute-gengar.jpg" width="200">
 
 - Seeing your network from the attacker's perspective
 - 'querty' is a bad password
