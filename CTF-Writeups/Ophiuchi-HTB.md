@@ -33,9 +33,45 @@ After a bit of abusing google to figure out what YAML exactly is, and how to exp
 
 ![2ophiuchi](https://i.imgur.com/Gu0RJ3v.png)
 
-We can use this deserialization vulnerablity to get remote code execution. 
+We can use this deserialization vulnerablity to get remote code execution - For this I used and cloned [yaml payload on GitHub](https://github.com/artsploit/yaml-payload).
 
-WIP
+`git clone https://github.com/artsploit/yaml-payload`
+
+![3ophiuchi](https://i.imgur.com/RhMPiJH.png)
+
+There we modified the AwesomeScriptEngineFactory() method within AwesomeScriptEngineFactory.java. We can use the payloads found [Issue-3](https://github.com/artsploit/yaml-payload/issues/3) with our IP. Now as explained in the repository, I compiled the AwesomeScriptEngineFactory.java and build the yaml-payload.jar file.
+
+![4ophiuchi](https://i.imgur.com/zG8TUn8.png)
+
+This payload I copied to the apache directory and made sure the server is running.
+
+`cp yaml-payload.jar /var/www/html/yaml-payload.jar && sudo service apache2 start`
+
+Now, we should be able to execute the YAML parser on the victim's machine, after starting the netcast listener on port 8081.
+
+![5ophiuchi](https://imgur.com/a/hmjnLRd)
+
+One I clicked the PARSE button, the payload was executed and I had access to the reverse shell as the tomcat user.
+
+![6ophiuchi](https://i.imgur.com/tJ79z7A.png)
+
+## 3. Privilege Escalation - User
+
+Finding the user flag is fairly simple. After a basic enumeration we'll find that /opt/tomcat/conf/tomcat-users.xml contains a password for the admin user.
+
+`<user username="admin" password="whythereisalimit" roles="manager-gui,admin-gui"/>`
+
+We can now ssh into the machine as suer admin using the obtained creds.
+
+## 4. Privilege Escalation - root
+
+First, I checked what sudo capabilities our user admin got.
+
+`sudo -l
+(ALL) NOPASSWD: /usr/bin/go run /opt/wasm-functions/index.go`
+
+So we can run /usr/bin/go run /opt/wasm-functions/index.go with root privileges. Let’s check out the file.
+
 
 
 ## 5. Cleanup
