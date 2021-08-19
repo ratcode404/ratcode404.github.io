@@ -37,12 +37,11 @@ We can use this deserialization vulnerablity to get remote code execution - For 
 
 `git clone https://github.com/artsploit/yaml-payload`
 
-<img src="https://i.imgur.com/RhMPiJH.png" width="400">
-![3ophiuchi](https://i.imgur.com/RhMPiJH.png){:height="75%" width="75%"}
+<img src="https://i.imgur.com/RhMPiJH.png" width="600">
 
 There we modified the AwesomeScriptEngineFactory() method within AwesomeScriptEngineFactory.java. We can use the payloads found [Issue-3](https://github.com/artsploit/yaml-payload/issues/3) with our IP. Now as explained in the repository, I compiled the AwesomeScriptEngineFactory.java and build the yaml-payload.jar file.
 
-![4ophiuchi](https://i.imgur.com/zG8TUn8.png)
+<img src="https://i.imgur.com/zG8TUn8.png" width="600">
 
 This payload I copied to the apache directory and made sure the server is running.
 
@@ -50,7 +49,7 @@ This payload I copied to the apache directory and made sure the server is runnin
 
 Now, we should be able to execute the YAML parser on the victim's machine, after starting the netcast listener on port 8081.
 
-![5ophiuchi](https://imgur.com/a/hmjnLRd)
+<img src="https://imgur.com/a/hmjnLRd" width="600">
 
 One I clicked the PARSE button, the payload was executed and I had access to the reverse shell as the tomcat user.
 
