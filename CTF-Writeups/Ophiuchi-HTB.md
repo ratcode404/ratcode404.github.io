@@ -49,7 +49,7 @@ This payload I copied to the apache directory and made sure the server is runnin
 
 Now, we should be able to execute the YAML parser on the victim's machine, after starting the netcast listener on port 8081.
 
-<img src="https://imgur.com/a/hmjnLRd" width="600">
+<img src="https://imgur.com/a/hmjnLRd.png" width="600">
 
 One I clicked the PARSE button, the payload was executed and I had access to the reverse shell as the tomcat user.
 
