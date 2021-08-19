@@ -70,8 +70,39 @@ First, I checked what sudo capabilities our user admin got.
 `sudo -l
 (ALL) NOPASSWD: /usr/bin/go run /opt/wasm-functions/index.go`
 
-So we can run /usr/bin/go run /opt/wasm-functions/index.go with root privileges. Let’s check out the file.
+So we can run `/usr/bin/go run /opt/wasm-functions/index.go` with root privileges. Let’s check out the file.
 
+`package main
+
+import (
+        "fmt"
+        wasm "github.com/wasmerio/wasmer-go/wasmer"
+        "os/exec"
+        "log"
+)
+
+
+func main() {
+        bytes, _ := wasm.ReadBytes("main.wasm")
+
+        instance, _ := wasm.NewInstance(bytes)
+        defer instance.Close()
+        init := instance.Exports["info"]
+        result,_ := init()
+        f := result.String()
+        if (f != "1") {          <==========================================
+                fmt.Println("Not ready to deploy")
+        } else {
+                fmt.Println("Ready to deploy")
+                out, err := exec.Command("/bin/sh", "deploy.sh").Output()
+                if err != nil {
+                        log.Fatal(err)
+                }
+                fmt.Println(string(out))
+        }
+}`
+
+If we're able to control the f variable, then we can create a deploy.sh to be executed in another directory. What's notable here is that absolute path is not used for main.wasm and the deploy.sh files. These files will be read from our current working directory, from where we run the index.go file.
 
 
 ## 5. Cleanup
