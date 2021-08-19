@@ -37,6 +37,7 @@ We can use this deserialization vulnerablity to get remote code execution - For 
 
 `git clone https://github.com/artsploit/yaml-payload`
 
+<img src="https://i.imgur.com/RhMPiJH.png" width="400">
 ![3ophiuchi](https://i.imgur.com/RhMPiJH.png){:height="75%" width="75%"}
 
 There we modified the AwesomeScriptEngineFactory() method within AwesomeScriptEngineFactory.java. We can use the payloads found [Issue-3](https://github.com/artsploit/yaml-payload/issues/3) with our IP. Now as explained in the repository, I compiled the AwesomeScriptEngineFactory.java and build the yaml-payload.jar file.
