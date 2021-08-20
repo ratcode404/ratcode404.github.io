@@ -6,7 +6,7 @@
 - 'querty' is a bad password
 
 ### Certifications
-<img src="img/logo-UW.png" width="20"> CYB001x Cybersecurity (University of Washington, September 2020)
+* <img src="img/logo-UW.png" width="18"> CYB001x Cybersecurity (University of Washington, September 2020)
 
 ## Projects and Tools
 
