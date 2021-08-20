@@ -6,7 +6,7 @@
 - 'querty' is a bad password
 
 ### Certifications
-<img src="https://cdn.freelogovectors.net/wp-content/uploads/2014/01/UW_Logo_University_of_Washington.jpg" width="80"> CYB001x Cybersecurity
+<img src="https://cdn.freelogovectors.net/wp-content/uploads/2014/01/UW_Logo_University_of_Washington.jpg" width="40"> CYB001x Cybersecurity
 University of Washington
 September 2020
 
