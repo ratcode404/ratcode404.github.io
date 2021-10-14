@@ -33,7 +33,7 @@ After a bit of abusing google to figure out what YAML exactly is, and how to exp
 
 ![2ophiuchi](https://i.imgur.com/Gu0RJ3v.png)
 
-We can use this deserialization vulnerablity to get remote code execution - For this I used and cloned [yaml payload on GitHub](https://github.com/artsploit/yaml-payload).
+We can use this deserialization vulnerablity to get remote code execution - For this I used and cloned [yaml payload on GitHub](https://github.com/artsploit/yaml-payload). It is a tiny project for generating payloads for the SnakeYAML deserialization gadget by running a payload on a vulnerable host.
 
 `git clone https://github.com/artsploit/yaml-payload`
 
