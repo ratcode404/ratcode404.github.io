@@ -16,6 +16,9 @@
 
 Cheat sheets and more, currently work in process.
 
+* [Pentesting Cheat Sheet](projects/Pentest-CS.md) - old wip pentesting cheatsheet, could be outdated
+* [Decode Cheat Sheet](projects/Decrypt-CS.md) - old wip decrypt and decoding cheatsheet, could be outdated
+
 ## CTF Write Ups
 
 These aren't the only CTF's I've ever done, of course.
