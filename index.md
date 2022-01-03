@@ -29,5 +29,5 @@ These aren't the only CTF's I've ever done, of course.
 
 Cheatsheets I've started working on in the past few years but stopped again, these are most likely unfinished and outdated. There are better ones by other engineers around!
 
-* [Pentesting Cheat Sheet](projects/Pentest-CS.md) - Better version by https://github.com/ivan-sincek/penetration-testing-cheat-sheet/blob/master/README.md
+* [Pentesting Cheat Sheet](projects/Pentest-CS.md) - Better version by [Ivan Sincek](https://github.com/ivan-sincek/penetration-testing-cheat-sheet/)
 * [Decode Cheat Sheet](projects/Decrypt-CS.md) - old wip decrypt and decoding cheatsheet
