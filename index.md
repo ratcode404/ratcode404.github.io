@@ -8,6 +8,10 @@
 ### Certifications
 * <img src="img/logo-UW.png" width="18"> CYB001x Cybersecurity (University of Washington, September 2020)
 
+## Blog
+
+* [TPM and Windows 11](blog/22-01-03-TPM.md) - 03 January 2022
+
 ## Projects and Tools
 
 Cheat sheets and more, currently work in process.
