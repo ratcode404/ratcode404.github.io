@@ -14,10 +14,7 @@
 
 ## Projects and Tools
 
-Cheat sheets and more, currently work in process.
-
-* [Pentesting Cheat Sheet](projects/Pentest-CS.md) - old wip pentesting cheatsheet, could be outdated
-* [Decode Cheat Sheet](projects/Decrypt-CS.md) - old wip decrypt and decoding cheatsheet, could be outdated
+Projects, tools and more, currently work in process.
 
 ## CTF Write Ups
 
@@ -27,3 +24,10 @@ These aren't the only CTF's I've ever done, of course.
 * [Sense on HackTheBox](CTF-Writeups/Sense-HTB.md) - 20 March 2018
 * [Bashed on HackTheBox](CTF-Writeups/Bashed-HTB.md) - 20 March 2018
 * [Nibbles on HackTheBox](CTF-Writeups/Nibbles-HTB.md) - 15 March 2018
+
+## Cheatsheets
+
+Cheatsheets I've started working on in the past few years but stopped again, these are most likely unfinished and outdated. There are better ones by other engineers around!
+
+* [Pentesting Cheat Sheet](projects/Pentest-CS.md) - old wip pentesting cheatsheet, could be outdated
+* [Decode Cheat Sheet](projects/Decrypt-CS.md) - old wip decrypt and decoding cheatsheet, could be outdated
