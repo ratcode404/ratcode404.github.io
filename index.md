@@ -10,6 +10,7 @@
 
 ## Blog
 
+* [Implementing ISO 27001](blog/22-01-11-ISO-27001.md) - 11 January 2022
 * [0.999... is equal to 1](blog/22-01-04-0.999.md) - 04 January 2022
 * [TPM and Windows 11](blog/22-01-03-TPM.md) - 03 January 2022
 
