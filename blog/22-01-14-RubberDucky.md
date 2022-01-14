@@ -35,6 +35,3 @@ After creating the payload we inject it on the USB, by placing the inject.bin in
 2021-11-18 20:08:38: New RubberDucky initialisation detected from 192.168.1.105, 192.168.1.105
 ```
 
-<img src="../img/blog-22-rubduck-init.PNG" width="600">
-
-<img src="../img/blog-22-rubduck-get.PNG" width="600">
