@@ -19,7 +19,7 @@
 
 Projects, tools and more, currently work in process.
 
-* [AlterEpoch Configuration for TinTIn++](https://github.com/ratcode404/tintin-alterepoch) - 2022
+* [AlterEpoch Configuration for TinTin++](https://github.com/ratcode404/tintin-alterepoch) - 2022
 
 ## CTF Write Ups
 
