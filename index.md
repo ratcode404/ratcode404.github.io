@@ -19,6 +19,7 @@
 
 Projects, tools and more, currently work in process.
 
+* [Phishing Templates for GoPhish](https://github.com/ratcode404/gophish-templates) - 2022
 * [AlterEpoch Configuration for TinTin++](https://github.com/ratcode404/tintin-alterepoch) - 2022
 
 ## CTF Write Ups
