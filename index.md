@@ -10,7 +10,7 @@
 
 ## Blog
 
-* [Malware](blog/22-04-08-Malware.md) - 08 April 2022 (Unfinished)
+* [Malware](blog/22-04-08-Malware Development.md) - 08 April 2022 (Unfinished)
 * [Rubber Ducky](blog/22-01-14-RubberDucky.md) - 14 January 2022 (Unfinished)
 * [Implementing ISO 27001](blog/22-01-11-ISO-27001.md) - 11 January 2022 (Unfinished)
 * [0.999... is equal to 1](blog/22-01-04-0.999.md) - 04 January 2022
