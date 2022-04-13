@@ -17,6 +17,28 @@ DELAY 100
 STRING https://company.tld/rubduck/link.php // insert link here
 ENTER
 ```
+
+The .php was created and loaded into our webpage by one of my colleagues, the code is basically this:
+
+```php
+<?php
+
+$file = 'log.txt';
+$entry = file_get_contents($file);
+$time = date('Y-m-d H:i:s', time());
+if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    $entry .= sprintf('%s: New RubberDucky initialisation detected from %s' . PHP_EOL, $time, $ip);
+} else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $host = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+    $entry .= sprintf('%s: New RubberDucky initialisation detected from %s, %s' . PHP_EOL, $time, $host, $ip);
+}
+file_put_contents($file, $entry);
+
+header('Location: ' . 'https://google.com');
+die();
+```
   
 After creating the payload we inject it on the USB, by placing the inject.bin in the root directory. A few days after dropping it off, we had the results we wanted to see:
 
