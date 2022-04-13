@@ -1,0 +1,52 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "latex-workshop.latex.outDir": "%DIR%\\.tmp",
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "latexmk ➞ copyPDF ➞ updatepdf",
+        "tools": [
+          "latexmk",
+          "copyPDF"
+        ]
+      }
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+          "-shell-escape",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-pdflua",
+          "-outdir=%OUTDIR%",
+          "%DOC%"
+        ],
+        "env": {}
+      },
+      {
+        "name": "copyPDF",
+        "command": "C:\\windows\\system32\\cmd.exe",
+        "args": [
+          "/c",
+          "copy",
+          "%OUTDIR_W32%\\%DOCFILE%.pdf",
+          "%DIR_W32%\\..\\",
+        ],
+        "env": {}
+      },
+      {
+        "name": "pdfupdater",
+        "label": "updatepdf",
+        "dependsOn": "build",
+        "command": "${command:latex-workshop.refresh-viewer}"
+      },
+    ],
+  }
+}
