@@ -109,3 +109,5 @@ M
 DELAY 200
 F
 ```
+
+Since nobody seems to have thought of this way to open the outlook.exe and send mails more efficient, I have created a pull request for the [official Hak5 repository](https://github.com/hak5/usbrubberducky-payloads). 
