@@ -4,6 +4,8 @@
 
 <img src="../img/banner_hackerblue.jpg" width="1000">
 
+The Rubber Ducky is a 'flash drive' that types keystroke injection payloads into unsuspecting computers. Generally, payloads may execute commands on your device. As such, it is possible for a payload to damage your device. Payloads from this blog and repository are provided AS-IS without warranty. As with any script, you are advised to proceed with caution.
+
 ## Rubber Ducky Dropoff Attack
 
 Recently we decided to test our employees by dropping off a modified Rubber Ducky outside of the building and creating awareness for such social attacks. The DuckyCode opens up a webpage.php, which tracks the device and logs it on logfile which has been placed on the webserver.
