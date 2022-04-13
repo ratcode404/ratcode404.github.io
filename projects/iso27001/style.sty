@@ -1,0 +1,76 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{style}
+
+\RequirePackage[version=3]{mhchem}  % Package for chemical equation typesetting
+\RequirePackage{siunitx}            % Provides the \SI{}{} command for typesetting SI units
+\RequirePackage{graphicx}           % Required for the inclusion of images
+\RequirePackage{natbib}             % Required to change bibliography style to APA
+\RequirePackage{amsmath}            % Required for some math elements 
+\RequirePackage[a4paper, width=17cm,left=2cm, %marginparwidth=3cm,marginparsep=0.35cm,
+height=24.7cm,top=3cm,headsep=1cm,headheight=1.6cm,footskip=0.7cm]{geometry}  % Add geometry options in LaTeX
+\RequirePackage{fancyhdr}           % Required for head and foot
+\RequirePackage{xcolor}             % Add color definitions
+\RequirePackage{fontspec}
+%\RequirePackage{sectsty}            % Add possibility to change headings
+\RequirePackage{makecell}
+\RequirePackage[hidelinks]{hyperref}
+\pagestyle{fancy}                   % Pagestyle
+
+
+\setmainfont{Tahoma}
+\newcommand{\headerfont}{%
+    \fontsize{7}{9}\selectfont
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+\date{\today}                                       % Date for the report
+\author{ratcode404}
+
+%----------------------------------------------------------------------------------------
+%	Title
+%----------------------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------
+%	Head
+%----------------------------------------------------------------------------------------
+\fancyhf{}                                          % Clear header and footer
+\fancyhead[LO,L]{\sffamily\itshape \ISO}              % Topleft Option for Head
+\fancyhead[R]{\includegraphics[height=14mm]{../style/logo.png}}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headrule}{\vskip-8pt \hbox to\headwidth{\color[HTML]{FFBF27}\leaders\hrule height \headrulewidth\hfill}}
+%\renewcommand{\headrule}{{\color{red}\rule{\textwidth}{0.5pt}}}
+%----------------------------------------------------------------------------------------
+%	Foot
+%----------------------------------------------------------------------------------------
+\fancyfoot[RO,L]{\headerfont Version: \version}         % Bottomleft Option for Footer
+\fancyfoot[RO,C]{\headerfont \confidentialitylevel}                          % Pagenumber
+\fancyfoot[RO,R]{\headerfont Page \thepage} % Bottomright Option for Footer; Merge
+
+\renewcommand{\footrulewidth}{1pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color[HTML]{FFBF27}\leaders\hrule height \headrulewidth\hfill}}
+
+%----------------------------------------------------------------------------------------
+%	Chapters
+%----------------------------------------------------------------------------------------
+%\sectionfont{\color{yellow}}  % Sets colour of Sections
+
+
+%----------------------------------------------------------------------------------------
+%	OTHER SETTINGS
+%----------------------------------------------------------------------------------------
+\setlength\parindent{00pt}                          % Removes all indentation from paragraphs
+
+%\renewcommand{\thesection}{\ISO \arabic{section}}   % Chapter Numbering
+%\renewcommand{\labelenumi}{\alph{enumi}.}           % Make numbering in the enumerate
+                                                    % environment by letter rather than
+                                                    % number (e.g. section 6)
+
+
