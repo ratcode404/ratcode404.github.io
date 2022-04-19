@@ -123,4 +123,53 @@ Name len   base64 c len   raw c len
    35           76           56    
    43           88           64
    ```
-With this information we are able to spot that the username must be included in the cookie, and that there is some kind of block cipher being used to encrypt the data. The block size should be 8, considering the jumps in the raw cookie length.
+With this information we are able to spot that the username must be included in the cookie, and that there is some kind of block cipher being used to encrypt the data. The block size should be 8, considering the jumps in the raw cookie length. Interestingly, every time we log on with the same user the cookie changes; which could be an indication that they are using an IV for the encryption. 
+
+With all this information we can guess the structure of the cookie. There has to be padding, which needs to be eight bytes, same for the IV. Choosing a three character username, the cookie jumps to 24 bytes. 8 bytes IV, 8 padding, 3 the username. That leaves five bytes of static data in the cookie, probably something like `user=` or `name=`.
+
+Next, we will try to directory bruteforce the .php. We will use feroxbuster, and include -x php since.
+
+```
+ratcode404@kali$ feroxbuster -u http://10.10.11.119 -x php
+
+ ___  ___  __   __     __      __         __   ___
+|__  |__  |__) |__) | /  `    /  \ \_/ | |  \ |__
+|    |___ |  \ |  \ | \__,    \__/ / \ | |__/ |___
+by Ben "epi" Risher 🤓                 ver: 2.3.1
+───────────────────────────┬──────────────────────
+ 🎯  Target Url            │ http://10.10.11.119
+ 🚀  Threads               │ 50
+ 📖  Wordlist              │ /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
+ 👌  Status Codes          │ [200, 204, 301, 302, 307, 308, 401, 403, 405]
+ 💥  Timeout (secs)        │ 7
+ 🦡  User-Agent            │ feroxbuster/2.3.1
+ 💉  Config File           │ /etc/feroxbuster/ferox-config.toml
+ 💲  Extensions            │ [php]
+ 🔃  Recursion Depth       │ 4
+ 🎉  New Version Available │ https://github.com/epi052/feroxbuster/releases/latest
+───────────────────────────┴──────────────────────
+ 🏁  Press [ENTER] to use the Scan Cancel Menu™
+──────────────────────────────────────────────────
+200       54l      104w     2017c http://10.10.11.119/login.php
+302        0l        0w        0c http://10.10.11.119/logout.php
+200       55l      113w     2198c http://10.10.11.119/register.php
+301        9l       28w      313c http://10.10.11.119/config
+301        9l       28w      311c http://10.10.11.119/home
+200       99l      273w     3076c http://10.10.11.119/home/blog.php
+200        1l        1w       14c http://10.10.11.119/home/logs.php
+200        0l        0w        0c http://10.10.11.119/config/db.php
+200      299l      904w        0c http://10.10.11.119/index.php
+200        0l        0w        0c http://10.10.11.119/config/users.php
+200        0l        0w        0c http://10.10.11.119/config/auth.php
+301        9l       28w      319c http://10.10.11.119/home/profile
+302      290l      889w        0c http://10.10.11.119/home/index.php
+302       69l      126w     2503c http://10.10.11.119/home/profile/index.php
+403        9l       28w      277c http://10.10.11.119/server-status
+[####################] - 4m    239992/239992  0s      found:15      errors:278    
+[####################] - 4m     59998/59998   243/s   http://10.10.11.119
+[####################] - 4m     59998/59998   245/s   http://10.10.11.119/config
+[####################] - 4m     59998/59998   246/s   http://10.10.11.119/home
+[####################] - 4m     59998/59998   238/s   http://10.10.11.119/home/profile
+```
+
+Cool, let's check the results. The pages in `/config` return empty responses (as feroxbuster shows, 0 lines, 0 words). `/home/logs.php` returns a 200 with just a body of Unauthorized.
