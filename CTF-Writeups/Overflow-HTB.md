@@ -43,11 +43,7 @@ Service Info: Host:  overflow; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 SMTP is open, which means we might be able to bruteforce usernames, or send emails. A quick google search on the Apache and SSH versions will tell us that the host is likely running Ubuntu 18.04 Bionic.
 
-Checking the webpage that is hosted on the IP, we find this.
-
-![webpage](https://i.imgur.com/SZNrJug.png)
-
-There's not much there other than 'Sign In' and 'Sign Up' links, and a 'Contact Us' form at the bottom. Submitting the 'Contact Us' form just sends a GET to /?, so it doesn't do anything important. But the login redirects to `/login.php` and signup to `/register.php`.
+Next, we will be looking into the webpage itself. There's not much there other than 'Sign In' and 'Sign Up' links, and a 'Contact Us' form at the bottom. Submitting the 'Contact Us' form just sends a GET to /?, so it doesn't do anything important. But the login redirects to `/login.php` and signup to `/register.php`.
 
 ![login](https://i.imgur.com/AkuQ67a.png)
 
