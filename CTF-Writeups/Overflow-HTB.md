@@ -14,11 +14,15 @@ This write up assumes that the reader is using Kali, but any pentesting distro s
 
 The first thing we try and as usual is a very basic nmap scan.
 
-```nmap 10.10.11.119
+`
+nmap 10.10.11.119
 Nmap scan report for 10.10.11.119
 Host is up (0.12s latency).
 Not shown: 65532 closed ports
 PORT   STATE SERVICE
 22/tcp open  ssh
 25/tcp open  smtp
-80/tcp open  http```
+80/tcp open  http
+`
+
+sadsa
