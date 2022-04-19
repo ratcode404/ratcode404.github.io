@@ -61,3 +61,19 @@ There is also a profile page at `/home/profile/`, but the buttons there do visib
 
 ![profile](https://i.imgur.com/ZVzBYzM.png)
 
+`/home/blog.php` has four different posts, but the links do not work once again.
+
+![blog](https://i.imgur.com/2gIcpky.png)
+
+Other than that, there is also the `/logout.php`, which deletes the auth cookie and returns a 302 to the homepage.
+
+```
+HTTP/1.1 302 Found
+Date: Mon, 27 Sep 2021 20:27:05 GMT
+Server: Apache/2.4.29 (Ubuntu)
+Set-Cookie: auth=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0
+Location: index.php
+Content-Length: 0
+Connection: close
+Content-Type: text/html; charset=UTF-8
+```
