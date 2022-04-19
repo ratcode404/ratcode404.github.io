@@ -77,3 +77,50 @@ Content-Length: 0
 Connection: close
 Content-Type: text/html; charset=UTF-8
 ```
+
+Further investigating the cookie behavior, we will spot that it is using a Base-64 encryption. Everything else looks pretty normal.
+
+```
+Set-Cookie: auth=%2BV8hGOLZMNZVo81T4JCViBrSlRK1Kyof
+```
+
+Interesting enough, the cookie size does change with the username length. Using a quick script (the original written by Oxdf), we will be able to confirm this and the encryption.
+
+```python
+#!/usr/bin/env python3
+
+import random
+import requests
+import string
+from base64 import b64decode
+from urllib.parse import unquote
+
+
+url = "http://10.10.11.119/register.php"
+
+prev = 0
+print(f'Name len   base64 c len   raw c len')
+for i in range(1, 50):
+    name = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(i))
+    resp = requests.post(url, data={"username": name, "password": "aaaaa", "password2": "aaaaa"}, allow_redirects=False)
+    b64_cookie = unquote(resp.cookies["auth"])
+    raw_cookie = b64decode(b64_cookie)
+    if len(b64_cookie) != prev:
+        print(f'{len(name):^8}   {len(b64_cookie):^12}   {len(raw_cookie):^9}')
+        prev = len(b64_cookie)
+```
+
+This script will loop from 1 to 50, creating a random string the username, and eventually fetching the cookie that is set as a result. It decodes the cookie, and checks the length. If it is different from the previous one, things will be printed as well as the length of the base64-decoded cookie.
+
+```
+ratcode404@kali$ python test_cookie.py 
+Name len   base64 c len   raw c len
+   1            24           16    
+   3            32           24    
+   11           44           32    
+   19           56           40    
+   27           64           48    
+   35           76           56    
+   43           88           64
+   ```
+With this information we are able to spot that the username must be included in the cookie, and that there is some kind of block cipher being used to encrypt the data. The block size should be 8, considering the jumps in the raw cookie length.
