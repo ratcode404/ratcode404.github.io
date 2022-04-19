@@ -46,3 +46,18 @@ SMTP is open, which means we might be able to bruteforce usernames, or send emai
 Checking the webpage that is hosted on the IP, we find this.
 
 ![webpage](https://i.imgur.com/SZNrJug.png)
+
+There's not much there other than 'Sign In' and 'Sign Up' links, and a 'Contact Us' form at the bottom. Submitting the 'Contact Us' form just sends a GET to /?, so it doesn't do anything important. But the login redirects to `/login.php` and signup to `/register.php`.
+
+![login](https://i.imgur.com/AkuQ67a.png)
+
+Playing a round with both masks, there was no quick solution to get through these with simple injections. Unfortunately, there was no way to enumerate the usernames through checking the error messages in the login mask, but there is a different approach. Trying to register as admin will return to the registration.php, whereas any successful registration gets a 302: This means we are able to enumerate the users this way.
+
+Next, we register an account, which redirects back to `/home/index.php`, the front page. It is very similar to the page before, but the menu offers various options instead. 
+
+![menu](https://i.imgur.com/dVdkApn.png)
+
+There is also a profile page at `/home/profile/`, but the buttons there do visibly not work.
+
+![profile](https://i.imgur.com/ZVzBYzM.png)
+
