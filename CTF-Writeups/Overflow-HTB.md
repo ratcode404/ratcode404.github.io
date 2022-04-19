@@ -57,11 +57,7 @@ There is also a profile page at `/home/profile/`, but the buttons there do visib
 
 ![profile](https://i.imgur.com/ZVzBYzM.png)
 
-`/home/blog.php` has four different posts, but the links do not work once again.
-
-![blog](https://i.imgur.com/2gIcpky.png)
-
-Other than that, there is also the `/logout.php`, which deletes the auth cookie and returns a 302 to the homepage.
+`/home/blog.php` has four different posts, but the links do not work once again. Other than that, there is also the `/logout.php`, which deletes the auth cookie and returns a 302 to the homepage.
 
 ```
 HTTP/1.1 302 Found
