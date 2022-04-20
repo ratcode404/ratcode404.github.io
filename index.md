@@ -27,7 +27,7 @@ Projects, tools and more, currently work in process.
 
 Projects I have written scripts for, or worked with.
 
-* [Rubber Ducky Automailer](https://github.com/hak5/usbrubberducky-payloads/blob/master/payloads/library/prank/Automailer/payload.txt) - 2022
+* [Rubber Ducky Automailer](https://shop.hak5.org/blogs/payloads/automailer) - 2022
 
 ## CTF Write Ups
 
