@@ -33,7 +33,6 @@ Projects I have written scripts for, or worked with.
 
 These aren't the only CTF's I've ever done, of course.
 
-* [Overflow on HackTheBox](CTF-Writeups/Overflow-HTB.md) - 20 April 2022
 * [Ophiuchi on HackTheBox](CTF-Writeups/Ophiuchi-HTB.md) - 19 August 2021
 * [Sense on HackTheBox](CTF-Writeups/Sense-HTB.md) - 20 March 2018
 * [Bashed on HackTheBox](CTF-Writeups/Bashed-HTB.md) - 20 March 2018
