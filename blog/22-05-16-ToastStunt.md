@@ -111,22 +111,17 @@ Due proxy settings on local machine we will not see your logon page, connect to 
 connect wizard
 ```
 
+<img src="../img/blog-22-moo-moorunning.png" width="750">
+
 ## Basic Commands
 
-```
 Set a password for yourself.
-  -- @password <new-password>
+```
+@password <new-password>
+```
 
-@set $network.MOO_Name to "<game name>"
-https://www2.hawaii.edu/~herve/MOO/
-
-
-git clone https://github.com/JavaChilly/dome-client.js
-sudo apt install npm
-sudo apt upgrade && sudo apt update
-sudo npm install
-sudo npm init
-sudo npm install -g forever
-nano dome-client.js/config/default.js
+Rename yourself.
+```
+@rename #2 to "your-name"
 ```
 
