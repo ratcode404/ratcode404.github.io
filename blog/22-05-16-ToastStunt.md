@@ -2,7 +2,7 @@
 
 # Setting up a MOO
 
-<img src="../img/blog-22-malwarebanner.PNG" width="1000">
+<img src="../img/banner_hackerblue.jpg" width="1000">
 
 ToastStunt is a fork of the LambdaMOO / Stunt server.
 
@@ -30,6 +30,8 @@ git clone https://github.com/lisdude/toaststunt
 git clone https://github.com/lisdude/toastcore
 cp toastcore/toastcore.db toaststunt/toastcore.db
 ```
+
+<img src="../img/blog-22-moo-gitclone.png" width="750">
 
 Making a build directory inside /toaststunt to make the game.
 
