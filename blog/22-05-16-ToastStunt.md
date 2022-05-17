@@ -15,6 +15,8 @@ sudo apt upgrade
 sudo apt update
 ```
 
+<img src="../img/blog-22-moo-aptupdater.PNG" width="1000">
+
 Then install all the libs needed to run ToastStunt
 
 ```
