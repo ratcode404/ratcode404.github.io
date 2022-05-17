@@ -53,6 +53,52 @@ jobs
 bg 1
 ```
 
+## Run dome-client.js
+
+dome-client.js is a webclient to use instead of a basic telnet connection. First, we're cloning the repo as well.
+
+```
+cd ..
+cd ..
+git clone https://github.com/javachilly/dome-client.js/
+```
+
+Install NPM, which will be needed for the webinterface.
+
+```
+sudo apt install NPM
+sudo apt update
+```
+Next let's fetch the required update modules by using npm.
+
+```
+cd dome-client.js
+npm install
+```
+
+<img src="../img/blog-22-moo-npm.png" width="750">
+
+```
+sudo npm install -g forever
+```
+
+Next we will edit the config/default.js to make sure the basic information is correct.
+
+```
+nano config/default.js
+< CTRL X >
+```
+
+Now we're starting the server on port 5555 in debugging mode.
+
+```
+debug.sh
+```
+
+<img src="../img/blog-22-moo-debugsh.png" width="750">
+
+## Connect to your Moo
+
 Let's up telnet connection to our fresh moo.
 
 ```
@@ -83,3 +129,4 @@ sudo npm init
 sudo npm install -g forever
 nano dome-client.js/config/default.js
 ```
+
