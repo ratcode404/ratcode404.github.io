@@ -152,3 +152,18 @@ Create new rooms with @dig.
 n
 @dig south,s to #62
 ```
+
+After creating a new room with @dig, we are setting the basic movement messages.
+```
+s
+
+@leave north is "You make your way to the north."
+@oleave north is "goes north."
+@oarrive north is "walks in from the north."
+
+n
+
+@leave south is "You make your way to the south."
+@oleave south is "goes south."
+@oarrive south is "walks in from the south."
+```
