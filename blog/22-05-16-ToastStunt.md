@@ -149,5 +149,6 @@ Setup The First Room with ANSI colors.
 Create new rooms with @dig.
 ```
 @dig north,n to "The North Pole"
-@dig up,u to #621
+n
+@dig south,s to #62
 ```
