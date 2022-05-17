@@ -120,8 +120,22 @@ Set a password for yourself.
 @password <new-password>
 ```
 
-Rename yourself.
+Rename and describe yourself.
 ```
-@rename #2 to "your-name"
+@rename #2 to <your-name>
+@describe #2 as <your-description>
 ```
 
+Show kids to move to The First Room.
+```
+@kids #2
+@kids #3
+@show #62
+```
+
+Setup The First Room
+```
+@rename #62 to <room-name>
+@describe #62 as <room-description>
+```
+```
