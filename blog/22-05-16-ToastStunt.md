@@ -138,6 +138,7 @@ Enable basic ANSI options.
 @ansi-option +colors
 @ansi-option +blinking
 @ansi-option +bold
+@ansi-option +truecolor
 ```
 
 Setup The First Room with ANSI colors.
@@ -167,3 +168,10 @@ n
 @oleave south is "goes south."
 @oarrive south is "walks in from the south."
 ```
+
+Next, let's create a hidden object in the room.
+```
+@create #5 named installed thing
+@create #129 named A Server Interface,box,boxes,server
+```
+
