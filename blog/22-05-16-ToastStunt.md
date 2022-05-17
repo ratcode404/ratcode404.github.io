@@ -133,9 +133,17 @@ Show kids to move to The First Room.
 @show #62
 ```
 
-Setup The First Room
+Enable basic ANSI options.
 ```
-@rename #62 to <room-name>
-@describe #62 as <room-description>
+@ansi-option +colors
+@ansi-option +blinking
+@ansi-option +bold
 ```
+
+Setup The First Room with ANSI colors.
 ```
+@rename #62 to [yellow]<room-name>[normal]
+@describe #62 as [grey]<room-description>[normal]
+```
+
+
