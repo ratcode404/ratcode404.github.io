@@ -42,6 +42,8 @@ sudo cmake ../
 sudo make -j2
 ```
 
+<img src="../img/blog-22-moo-makej2.png" width="750">
+
 Starting the basic moo and run it as a background job.
 
 ```
