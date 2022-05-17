@@ -146,4 +146,8 @@ Setup The First Room with ANSI colors.
 @describe #62 as [grey]<room-description>[normal]
 ```
 
-
+Create new rooms with @dig.
+```
+@dig north,n to "The North Pole"
+@dig up,u to #621
+```
