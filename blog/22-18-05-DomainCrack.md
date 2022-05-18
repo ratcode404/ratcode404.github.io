@@ -42,7 +42,7 @@ quit
 ```
 
 <img src="../img/blog-22-adcrack-hashdump.png" width="750">
-<img src="../img/blog-22-adcrack-ntdsdump.PNG" width="500">
+<img src="../img/blog-22-adcrack-ntdsdump.png" width="500">
 
 
 
