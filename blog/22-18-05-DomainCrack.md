@@ -32,6 +32,7 @@ ntdsutil "ac i ntds" "ifm" "create full c:\temp\ntdsdump" q q
 ```
 
 or, in case it doesn't work we could use the whole command. It's the same thing.
+
 ```
 ntdsutil
 activate instance ntds
@@ -42,7 +43,23 @@ quit
 ```
 
 <img src="../img/blog-22-adcrack-hashdump.png" width="750">
-<img src="../img/blog-22-adcrack-ntdsdump.png" width="500">
 
+Cool, we got the dump. Copy it over to another machine and we're good to go. Make sure to delete the files on the domain controller afterwards.
 
+<img src="../img/blog-22-adcrack-ntdsdump.png" width="250">
+
+### Extracting the hashes
+
+To use the hashes correctly, we will have to extract them. We can use the secretsdump.py from the [impacket repository](https://github.com/SecureAuthCorp/impacket>) for this task. The required classes can be installed using pip:
+
+```
+python3 -m pip install impacket
+```
+
+Next, we change to the directory containing the dump created from the previous step and get the secretsdump.py script. This works in windows and linux.
+
+```
+cd ~/Temp/ntdsdump
+wget https://raw.githubusercontent.com/SecureAuthCorp/impacket/master/examples/secretsdump.py
+```
 
