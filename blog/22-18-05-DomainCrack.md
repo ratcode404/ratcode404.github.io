@@ -56,10 +56,22 @@ To use the hashes correctly, we will have to extract them. We can use the secret
 python3 -m pip install impacket
 ```
 
-Next, we change to the directory containing the dump created from the previous step and get the secretsdump.py script. This works in windows and linux.
+Next, we change to the directory containing the dump created from the previous step and get the secretsdump.py script.
 
 ```
 cd ~/Temp/ntdsdump
 wget https://raw.githubusercontent.com/SecureAuthCorp/impacket/master/examples/secretsdump.py
 ```
 
+On windows we can use [DSInternals](https://github.com/MichaelGrafnetter/DSInternals/) to extract the hashes. Download the latest or current release from Github, and unblock the .zip file.
+
+<img src="../img/blog-22-adcrack-unblock.png" width="250">
+
+Next unzip the folder and import the powershell modules.
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+Import-Module -Name "C:\Users\mayerm.ATSICONNEX\Documents\Powershell Modules\DSInternals" -Verbose
+```
+
+<img src="../img/blog-22-adcrack-importmodule.png" width="750">
