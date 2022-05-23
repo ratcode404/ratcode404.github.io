@@ -166,7 +166,16 @@ Move to the new room and configure it as well.
 
 Things may vary with front or back, such as:
 ```
-(@oleave front is "goes to the front.")
+Front:
+@oleave front is "goes to the front."
+
+Down:
+@leave down is "You climb down."
+@oleave down is "climbs down."
+@oarrive down is "arrives from the up."
+
+Up
+
 ```
 
 Flagging an exit of the room as invisible:
@@ -179,12 +188,27 @@ Locking rooms with various objects or verbs, that the player needs to carry or b
 @lock f with "#<object>"
 ```
 
+Making a room dark:
+```
+@set #140.dark to 1
+```
+
 ### Programmer Commands
 
-Emable programmer window on webclient.
+Emable programmer window on webclient:
 ```
 @edit-options local+
 ```
+
+Commenting the code:
+```
+"This would be a comment";
+```
+
+Semi-colon needed as speech in code must be escaped with backslash:
+```
+player:tell("Random dude states: \"Hi there, call me Mister Backslash..\"");
+```    
 
 Editing a Verb, like showing exit names
 ```
@@ -201,7 +225,7 @@ if (this.exits)
 endif
 ```
 
-Slowing down movement speed.
+Slowing down movement speed:
 
 ```
 @edit $room:e east w west s south n north ne northeast nw northwest se southeast sw southwest u up d down
@@ -211,6 +235,16 @@ Add interrupt wherever you feel it is right. For me, I wanted the interrupt to h
 @edit $exit:move
 suspend(3); on line 16
 ```
+
+Pausing movement to interinterupt with texts, for example for a security check:
+```
+@edit $exit:invoke
+
+if(this.source == #64 && this.dest == #132)
+    suspend(1);
+    player:tell("You step behind the line of people waiting to approach the security checkpoint.");
+endif
+```    
 
 ### Configuration Commands
 
