@@ -47,8 +47,8 @@ sudo make -j2
 Starting the basic moo and run it as a background job.
 
 ```
- ./moo ../toastcore.db <database-name>.db
- < Control Z >
+./moo ../toastcore.db <database-name>.db
+< Control Z >
 jobs
 bg 1
 ```
@@ -97,6 +97,10 @@ debug.sh
 
 <img src="../img/blog-22-moo-debugsh.png" width="750">
 
+## MOO Commands
+
+## MOO Configurations
+
 ## Connect to your Moo
 
 Let's up telnet connection to our fresh moo.
@@ -120,18 +124,82 @@ Set a password for yourself.
 @password <new-password>
 ```
 
-Rename and describe yourself.
+Creating a new account for the MOO.
+```
+@make-player <name> <e-mail>
+```
+
+Use kids, parents and @show to find the correct objects.
+```
+@parents #3
+@kids #2
+@kids #3
+@show #62
+```
+
+Rename and describe yourself or any other object.
 ```
 @rename #2 to <your-name>
 @describe #2 as <your-description>
 ```
 
-Show kids to move to The First Room.
+## Building Commands
+
+Create a new room and set up the correct messages.
 ```
-@kids #2
-@kids #3
-@show #62
+@dig north,n to "Roomname"
+@leave north is "You make your way to the north."
+@oleave north is "goes north."
+@oarrive north is "walks in from the south."
 ```
+
+Move to the new room and configure it as well.
+```
+@dig south,s to #<previous-room>
+@rename #<new-room> to [red]Red Colored Roomname[normal]
+@describe #<new-room> as [grey]Grey Description.[normal]
+@leave south is "You make your way to the south."
+@oleave south is "goes south."
+@oarrive south is "walks in from the north."
+```
+
+Things may vary with front or back, such as:
+```
+(@oleave front is "goes to the front.")
+```
+
+## Programmer Commands
+
+Emable programmer window on webclient.
+```
+@edit-options local+
+```
+
+Editing a Verb, like showing exit names
+```
+@edit $room:tell_contents
+
+Then replace
+if ((!this.dark) && (contents != {}))
+with
+if ((!this.dark) && ((contents != {}) || (this.exits != {})))
+
+And add the following as an additional if in ctype=3, after endif that is linked to players on the very bottom.
+if (this.exits)
+      player:tell($string_utils:english_list($list_utils:map_prop(this:obvious_exits(), "name")));
+endif
+```
+
+Slowing down movement speed.
+
+```
+@edit $room:e east w west s south n north ne northeast nw northwest se southeast sw southwest u up d down
+@edit $exit:move
+
+Add interrupt wherever you feel it is right.
+```
+
+## Configuration Commands
 
 Enable basic ANSI options.
 ```
@@ -139,39 +207,5 @@ Enable basic ANSI options.
 @ansi-option +blinking
 @ansi-option +bold
 @ansi-option +truecolor
+@ansi-option +misc
 ```
-
-Setup The First Room with ANSI colors.
-```
-@rename #62 to [yellow]<room-name>[normal]
-@describe #62 as [grey]<room-description>[normal]
-```
-
-Create new rooms with @dig.
-```
-@dig north,n to "The North Pole"
-n
-@dig south,s to #62
-```
-
-After creating a new room with @dig, we are setting the basic movement messages.
-```
-s
-
-@leave north is "You make your way to the north."
-@oleave north is "goes north."
-@oarrive north is "walks in from the north."
-
-n
-
-@leave south is "You make your way to the south."
-@oleave south is "goes south."
-@oarrive south is "walks in from the south."
-```
-
-Next, let's create a hidden object in the room.
-```
-@create #5 named installed thing
-@create #129 named A Server Interface,box,boxes,server
-```
-
