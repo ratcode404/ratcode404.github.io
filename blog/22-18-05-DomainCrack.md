@@ -93,7 +93,7 @@ Get-ADDBAccount -All -DBPath 'C:\temp\ntdsdump\Active Directory\ntds.dit' -BootK
 
 When pentesting a company it's always useful to create an additional wordlist with words related to the location and name. There are some easy tools to create wordlist with that information; for example [Weakpass Generator](https://weakpass.com/generate). Here we add some words to create a custom wordlist, which we can later merge with an actual one.
 
-<img src="../img/blog-22-adcrack-weakpass.png" width="1000">
+<img src="../img/blog-22-adcrack-weakpass.png" width="750">
 
 
 ### Cracking the hash
@@ -106,7 +106,7 @@ Remember, we will have to delete the .pot to display newly received hashes, if w
 
 ```rm ntlm.pot```
 
-<img src="../img/blog-22-adcrack-weakpass.png" width="1000">
+<img src="../img/blog-22-adcrack.png" width="1000">
 
 ## Conclusion
 
