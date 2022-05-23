@@ -174,6 +174,11 @@ Flagging an exit of the room as invisible:
 @set #<exit>.obvious to 0
 ```
 
+Locking rooms with various objects or verbs, that the player needs to carry or be part of:
+```
+@lock f with "#<object>"
+```
+
 ### Programmer Commands
 
 Emable programmer window on webclient.
