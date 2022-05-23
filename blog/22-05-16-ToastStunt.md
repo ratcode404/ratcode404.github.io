@@ -97,10 +97,6 @@ debug.sh
 
 <img src="../img/blog-22-moo-debugsh.png" width="750">
 
-## MOO Commands
-
-## MOO Configurations
-
 ## Connect to your Moo
 
 Let's up telnet connection to our fresh moo.
@@ -117,7 +113,12 @@ connect wizard
 
 <img src="../img/blog-22-moo-moorunning.png" width="750">
 
-## Basic Commands
+
+## MOO Commands
+
+I will add some commands I have struggled with as I find them.
+
+### Basic Commands
 
 Set a password for yourself.
 ```
@@ -143,7 +144,7 @@ Rename and describe yourself or any other object.
 @describe #2 as <your-description>
 ```
 
-## Building Commands
+### Building Commands
 
 Create a new room and set up the correct messages.
 ```
@@ -168,7 +169,7 @@ Things may vary with front or back, such as:
 (@oleave front is "goes to the front.")
 ```
 
-## Programmer Commands
+### Programmer Commands
 
 Emable programmer window on webclient.
 ```
@@ -199,7 +200,7 @@ Slowing down movement speed.
 Add interrupt wherever you feel it is right.
 ```
 
-## Configuration Commands
+### Configuration Commands
 
 Enable basic ANSI options.
 ```
