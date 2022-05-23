@@ -110,6 +110,12 @@ Remember, we will have to delete the .pot to display newly received hashes, if w
 
 ## Conclusion
 
-It's a simple job to crack the hashes of a domain if you got access to the ntdsdump.
+It's a simple job to crack the hashes of a domain if you got access to the ntdsdump., that is the reason why it's important to use a strong password both at work and at home.
+
+* A secure password consists of 14 or more characters, with lowercase and uppercase letters, as well as numbers and special characters. Phrases are often recommended, such as "IloveMyCar,it's4YearsOld!" or even items found in the kitchen at home, such as "blender,refrigerator,4stoveplates." 
+* Special characters like "!" or "?" are often used. Therefore it is good to include other characters like "$", "%" , ";", "_".
+* It is also very helpful to use local idioms and numbers instead of letters, like "Il1kedat4strea.", which as a combination makes a normal dictionary attack (as described above) almost impossible.
+* Do not store your passwords unencrypted on your PC and do not use a notepad. Password managers like KeePass or KeePassXC can help here.
+* Always rememeber to set different passwords for private and company-related data.
 
 ![hacked](https://cdn-images-1.medium.com/max/1600/1*TtuBByJ52bSP-d2WPOczJg.png)
