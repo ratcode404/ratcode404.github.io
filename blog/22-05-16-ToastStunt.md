@@ -169,6 +169,11 @@ Things may vary with front or back, such as:
 (@oleave front is "goes to the front.")
 ```
 
+Flagging an exit of the room as invisible:
+```
+@set #<exit>.obvious to 0
+```
+
 ### Programmer Commands
 
 Emable programmer window on webclient.
