@@ -98,6 +98,18 @@ When pentesting a company it's always useful to create an additional wordlist wi
 
 ### Cracking the hash
 
+Next, all there is left to run John the Ripper on Kali Linux. We use this command to export the hashes into a .pot file.
+
 ```john --session=ntlm_hases --wordlist=/home/kali/wordlist.txt --rules=Jumbo --fork=8 --format=nt --pot=ntlm.pot  /home/kali/Desktop/ntdsdump/hashes.txt```
 
+Remember, we will have to delete the .pot to display newly received hashes, if we decide to re-run the script.
 
+```rm ntlm.pot```
+
+<img src="../img/`blog-22-adcrack-weakpass.png" width="1000">
+
+## Conclusion
+
+It's a simple job to crack the hashes of a domain if you got access to the ntdsdump.
+
+![hacked](https://cdn-images-1.medium.com/max/1600/1*TtuBByJ52bSP-d2WPOczJg.png)
