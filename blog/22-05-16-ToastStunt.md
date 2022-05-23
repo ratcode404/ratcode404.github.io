@@ -195,9 +195,11 @@ Slowing down movement speed.
 
 ```
 @edit $room:e east w west s south n north ne northeast nw northwest se southeast sw southwest u up d down
-@edit $exit:move
 
-Add interrupt wherever you feel it is right.
+Add interrupt wherever you feel it is right. For me, I wanted the interrupt to happen after the movement indication to happen so I did edit the following:
+
+@edit $exit:move
+suspend(3); on line 16
 ```
 
 ### Configuration Commands
