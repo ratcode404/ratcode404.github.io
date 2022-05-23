@@ -10,6 +10,7 @@
 
 ## Blog
 
+* [Domain Hash Cracking](blog/22-18-05-DomainCrack.md) - 23 May 2022
 * [Malware Development](blog/22-04-08-MalwareDevelopment.md) - 18 May 2022
 * [Set Up ToastStunt MOO](blog/22-05-16-ToastStunt.md) - 17 May 2022
 * [Rubber Ducky Injection](blog/22-01-14-RubberDucky.md) - 13 April 2022
