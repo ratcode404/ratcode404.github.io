@@ -10,6 +10,7 @@
 
 ## Blog
 
+* [Analysis Cyberattack on Ukraine](blog/22-06-01-AnalysisOfUkrainianExcel.md) - 01 June 2022
 * [Domain Hash Cracking](blog/22-18-05-DomainCrack.md) - 23 May 2022
 * [Malware Development](blog/22-04-08-MalwareDevelopment.md) - 18 May 2022
 * [Set Up ToastStunt MOO](blog/22-05-16-ToastStunt.md) - 17 May 2022
