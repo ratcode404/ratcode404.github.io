@@ -4,7 +4,7 @@
 
 <img src="../img/blog-22-malwarebanner.PNG" width="1000">
 
-It is important to know that our approach can be generalized to any other malicious documents, and used in the future. These documents were used to Ukrainian organizations in the context of the military conflict between Russia and Ukraine. Make sure to use a Virtual Machine for all further steps.
+It is important to know that our approach can be generalized to any other malicious documents, and probably be used in the future. These documents were sent to Ukrainian organizations in the context of the military conflict between Russia and Ukraine. Before analyzing this malware, we make sure to use a Virtual Machine for all further steps.
 
 ## Analysis of the .xlsx
 
