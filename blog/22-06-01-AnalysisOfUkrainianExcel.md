@@ -4,11 +4,11 @@
 
 <img src="../img/blog-22-malwarebanner.PNG" width="1000">
 
-It is important to know that our approach can be generalized to any other malicious documents, and probably be used in the future. These documents were sent to Ukrainian organizations in the context of the military conflict between Russia and Ukraine. Before analyzing this malware, we make sure to use a Virtual Machine for all further steps.
+Before reading this post, it is important to know that our approach can be generalized to any other malicious documents, and probably be used in the future again. These documents were sent to Ukrainian organizations in the context of the military conflict between Russia and Ukraine. Before analyzing this malware, we make sure to use a Virtual Machine for all further steps.
 
 ## Analysis of the .xlsx
 
-The first file we will be analyzing is an Excel document that has been spreaded via various ways, including basic e-mails. There are various ways to get access to it, one would be checking for the SHA and downloading the sample [here](https://malshare.com/sample.php?action=detail&hash=6903940ad6060424129a81364b2e2e97). Malshare allows you to download various software by accessing it with your own API key.
+The first file we will be analyzing is an Excel document that has been spreaded via various ways, including basic e-mails. There are various ways to get access and loading it, one of these would be checking for the SHA and downloading the sample [here](https://malshare.com/sample.php?action=detail&hash=6903940ad6060424129a81364b2e2e97). Malshare allows you to download various software by accessing it with your own API key.
 
 Popular scanners or EDR systems are getting instant hits on this one, for example SentinelOne.
 
@@ -18,13 +18,13 @@ In the managment console it is identified as downloader, which is correct as we 
 
 <img src="../img/blog-22-ukrainianmw-server.png" width="750">
 
-MDE, which has improved over the past few years a lot and I like to recommend, also gets an instant hit.
+Microsoft Defender for Endpoints, which has improved over the past few years, also gets an instant hit.
 
 <img src="../img/blog-22-ukrainianmw-mdescan.png" width="750">
 
-After downloading it and allowing it on any protection software to work so we can investigate further, we can use [oleid](https://github.com/decalage2/oletools) to check if there Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. 
+After downloading the file and allowing it to operate through any protection software we can investigate further. We will use [oleid](https://github.com/decalage2/oletools) to check if there Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. 
 
-This time, I have used Windows, though everything and more is possible on Kali or any other linux distribution. On Windows you need to make sure to add the python PATH variables. 
+This time, I use Windows, though everything is possible on Kali or any other Linux distribution. On Windows you need to make sure to add the python PATH variables. 
 
 ```
 pip3 install -U --user https://github.com/decalage2/oletools/archive/master.zip
