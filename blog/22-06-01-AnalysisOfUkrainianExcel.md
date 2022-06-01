@@ -8,7 +8,7 @@ Before reading this post, it is important to know that our approach can be gener
 
 ## Analysis of the .xlsx
 
-The first file we will be analyzing is an Excel document that has been spreaded via various ways, including basic e-mails. There are various ways to get access and loading it, one of these would be checking for the SHA and downloading the sample [here](https://malshare.com/sample.php?action=detail&hash=6903940ad6060424129a81364b2e2e97). Malshare allows you to download various software by accessing it with your own API key.
+The first file we will be analyzing is an Excel document that has been spreaded via various ways, including basic e-mails. There are multiple ways to get access and loading it, one of these would be checking for the SHA and downloading the sample [here](https://malshare.com/sample.php?action=detail&hash=6903940ad6060424129a81364b2e2e97). Malshare allows you to download different software by accessing it with your own API key.
 
 Popular scanners or EDR systems are getting instant hits on this one, for example SentinelOne.
 
