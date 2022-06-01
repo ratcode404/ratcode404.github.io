@@ -4,7 +4,7 @@
 
 <img src="../img/blog-22-malwarebanner.PNG" width="1000">
 
-It is important to know that our approach can be generalized to any other malicious documents, and used in the future. These documents were used to Ukrainian organizations in the context of the military conflict between Russia and Ukraine. Make sure to use a Virtual Machine for all further steps..
+It is important to know that our approach can be generalized to any other malicious documents, and used in the future. These documents were used to Ukrainian organizations in the context of the military conflict between Russia and Ukraine. Make sure to use a Virtual Machine for all further steps.
 
 ## Analysis of the .xlsx
 
@@ -59,12 +59,9 @@ The certutil.exe is a legitimate software, but used to download a binary (Ugrfa.
 
 <img src="../img/blog-22-ukrainianmw-ugrfa.bat.png" width="1000">
 
+There is basically a batch file on there, neat. Not so neat is the fact that at this time I have not got access to this .bat file or any identification of how the process would work further as any linked IPs to the group are dead.
 
+## Conclusion
 
-
-
-
-
-
-
+Office documents have over many decades been used to launch malware, often through macros, embedded content or exploits. Embedded ‘executable’ content is usually very visible, and with most exploits, even if you don’t know exactly what is being exploited, the presence of strange data in strange locations is usually a good giveaway that something is going on.
 
