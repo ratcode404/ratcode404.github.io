@@ -63,15 +63,11 @@ cd ~/Temp/ntdsdump
 wget https://raw.githubusercontent.com/SecureAuthCorp/impacket/master/examples/secretsdump.py
 ```
 
-On windows we can use [DSInternals](https://github.com/MichaelGrafnetter/DSInternals/) to extract the hashes. Download the latest or current release from Github, and unblock the .zip file.
-
-<img src="../img/blog-22-adcrack-unblock.png" width="250">
-
-Next unzip the folder and import the powershell modules.
+On windows we can use [DSInternals](https://github.com/MichaelGrafnetter/DSInternals/) to extract the hashes. Download the latest or current release from Github, and unblock the .zip file. Then unzip the folder and import the powershell modules.
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-Import-Module -Name "C:\Users\mayerm.ATSICONNEX\Documents\Powershell Modules\DSInternals" -Verbose
+Import-Module -Name "C:\Users\user\Documents\Powershell Modules\DSInternals" -Verbose
 ```
 
 <img src="../img/blog-22-adcrack-importmodule.png" width="750">
