@@ -67,7 +67,7 @@ On windows we can use [DSInternals](https://github.com/MichaelGrafnetter/DSInter
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-Import-Module -Name "C:\Users\user\Documents\Powershell Modules\DSInternals" -Verbose
+Import-Module -Name "C:\Users\SomeUserName\Documents\Powershell Modules\DSInternals" -Verbose
 ```
 
 <img src="../img/blog-22-adcrack-importmodule.png" width="750">
