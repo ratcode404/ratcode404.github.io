@@ -18,6 +18,10 @@ In the managment console it is identified as downloader, which is correct as we 
 
 <img src="../img/blog-22-ukrainianmw-server.png" width="750">
 
+MDE, which has improved over the past few years a lot and I like to recommend, also gets an instant hit.
+
+<img src="../img/blog-22-ukrainianmw-mdescan.png" width="750">
+
 After downloading it and allowing any protection software to work and investigate further, we can use [oleid](https://github.com/decalage2/oletools) to check if there Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. 
 
 ```
